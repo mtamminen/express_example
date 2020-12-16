@@ -4,6 +4,9 @@ pipeline {
       pollSCM('* * * * *')
   }
   stages {
+    environment {
+      HOME = '.'
+    }
     stage('Run tests') {
         agent {
           docker {
@@ -45,9 +48,7 @@ pipeline {
               sh 'echo hello'
         }
     }
-    environment {
-      HOME = '.'
-    }
+
   }
   
 }
