@@ -45,8 +45,9 @@ pipeline {
               sh 'echo hello'
         }
     }
+    environment {
+      HOME = '.'
+    }
   }
-  environment {
-    HOME = '.'
-  }
+  
 }
