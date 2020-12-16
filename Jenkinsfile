@@ -3,18 +3,18 @@ pipeline {
   triggers {
       pollSCM('* * * * *')
   }
-  stages {
-    
+  stages { 
     stage('Run tests') {
         agent {
           docker {
             image 'node:8-alpine'
             args '-p 3000:3000'
-          }
-          environment {
-            HOME = '.'
+            environment {
+              HOME = '.'
+            }
           }
         }
+      
         stages {
           stage('Build') {
             steps {
