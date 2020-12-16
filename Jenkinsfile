@@ -19,5 +19,11 @@ pipeline {
       }
     }
 
+    stage('Delivery') {
+      steps {
+        sh 'npm start'
+      }
+    }
+
   }
 }
