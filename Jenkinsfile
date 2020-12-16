@@ -5,6 +5,9 @@ pipeline {
   }   
   stages { 
     stage('Run tests') {
+      environment {
+        HOME = '.'
+      }
         agent {
           docker {
             image 'node:8-alpine'
@@ -14,11 +17,17 @@ pipeline {
       
         stages {
           stage('Build') {
+            environment {
+              HOME = '.'
+            }
             steps {
               sh 'npm install'
             }
           }
           stage('Test') {
+            environment {
+              HOME = '.'
+            }
             steps {
               sh 'npm test'
             }
@@ -27,6 +36,9 @@ pipeline {
       }
 
       stage('Deploy app to development') {
+        environment {
+          HOME = '.'
+        }
           when {
               branch 'Development'
           }
@@ -37,6 +49,9 @@ pipeline {
       }
 
     stage('Deploy app to production') {
+      environment {
+        HOME = '.'
+      }
         when {
             branch 'master'
         }
@@ -44,9 +59,6 @@ pipeline {
         steps {
               sh 'echo hello'
         }
-    }
-    environment {
-      HOME = '.'
     }
   }
 }
